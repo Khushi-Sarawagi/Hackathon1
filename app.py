@@ -94,6 +94,15 @@ def login():
 
     return render_template("login.html")
 
+@app.route('/volunteers')
+def volunteers():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT name, phone, email FROM volunteers")
+    volunteers = cursor.fetchall()
+    conn.close()
+    return render_template("volunteers.html", volunteers=volunteers)
+
 @app.route('/send_sos', methods=['POST'])
 def send_sos():
     try:
@@ -110,7 +119,7 @@ def send_sos():
         else:
             return jsonify({"error": "Database connection failed"}), 500
 
-        # Send SMS using Twilio
+        # Send SMS using Twilio 
         client = Client(TWILIO_SID, TWILIO_AUTH_TOKEN)
         for volunteer in volunteers:
             client.messages.create(

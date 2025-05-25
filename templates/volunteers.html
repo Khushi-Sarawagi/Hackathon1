@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Volunteers List</title>
+    <link rel="stylesheet" href="/static/styles.css"> <!-- Matches your main theme -->
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="sos-icon">SOS</span>
+            <span class="brand">Alert System</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/volunteers" class="active">Volunteers</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/signup">Signup</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <h2 class="highlight-white">Registered Volunteers</h2>
+        <div class="form-container">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for volunteer in volunteers %}
+                    <tr>
+                        <td>{{ volunteer.name }}</td>
+                        <td>{{ volunteer.phone }}</td>
+                        <td>{{ volunteer.email }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
