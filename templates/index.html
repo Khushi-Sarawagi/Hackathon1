@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alertify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="sos-icon">SOS</span>
+            <span class="brand">Alertify</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="active"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-users"></i> Volunteers</a></li>
+            <!-- Profile Dropdown -->
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa fa-user"></i> Profile ▼</a>
+                <div class="dropdown-content">
+                    <a href="login.html"><i class="fa fa-sign-in-alt"></i> Login</a>
+                    <a href="signup.html"><i class="fa fa-user-plus"></i> Signup</a>
+                </div>
+            </li>
+            <li><a href="#"><i class="fa fa-info-circle"></i> About</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <h1><span class="highlight-white">Your Safety,</span><br><span class="highlight-orange">Our Priority</span></h1>
+        <p>Connect with nearby volunteers instantly in emergencies. Your safety network is just one tap away.</p>
+        <button id="sos-btn">SOS</button>
+        <p class="tap-text">Tap for emergency assistance</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

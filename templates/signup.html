@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - Alertify</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="sos-icon">SOS</span>
+            <span class="brand">Alertify</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="/volunteers"><i class="fa fa-users"></i> Volunteers</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropbtn"><i class="fa fa-user"></i> Profile ▼</a>
+                <div class="dropdown-content">
+                    <a href="login.html"><i class="fa fa-sign-in-alt"></i> Login</a>
+                    <a href="signup.html" class="active"><i class="fa fa-user-plus"></i> Signup</a>
+                </div>
+            </li>
+            <li><a href="/about"><i class="fa fa-info-circle"></i> About</a></li>
+        </ul>
+    </nav>
+
+    <div class="form-container">
+        <h2>Volunteer Registration</h2>
+        <form id="signup-form">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="text" id="phone" placeholder="Phone Number" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+
+    <script>
+        document.getElementById("signup-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            fetch("/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: document.getElementById("name").value,
+                    phone: document.getElementById("phone").value,
+                    email: document.getElementById("email").value,
+                    password: document.getElementById("password").value
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.message) {
+                    alert("Signup successful! Redirecting to login...");
+                    window.location.href = "login.html"; // Redirect after successful registration
+                } else {
+                    alert("Error: " + data.error);
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred. Please try again.");
+            });
+        });
+    </script>
+</body>
+</html>
