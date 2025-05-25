@@ -11,16 +11,6 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY", "fallback_secret_key")
 
-db_config = {
-    'host': os.getenv('DB_HOST'),
-    'user': os.getenv('DB_USER'),
-    'password': os.getenv('DB_PASSWORD'),
-    'database': os.getenv('DB_NAME')
-}
-
-# Connect to the database
-db = mysql.connector.connect(**db_config)
-cursor = db.cursor()
 
 # Twilio Configuration
 TWILIO_SID = os.getenv("TWILIO_SID")
